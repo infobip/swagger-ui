@@ -1,0 +1,1214 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "CustomerProfile",
+  "apis" : [ {
+    "path" : "/1/customerProfile/signup",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_signup",
+      "responseClass" : "SignupResponse",
+      "summary" : "Sign-up a new user",
+      "notes" : "<p>\nThe newly created user is still unverified. To use the API, it must be verified first. \nFor user verification, see the method <code>POST /1/customerProfile/verify</code>.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SignupRequest",
+        "description" : "User sign-up request",
+        "dataType" : "SignupRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/login",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_login",
+      "responseClass" : "LoginResponse",
+      "summary" : "Login an user",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "LoginRequest",
+        "description" : "The login request",
+        "dataType" : "LoginRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/logout",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_logout",
+      "responseClass" : "void",
+      "summary" : "Logout the current user",
+      "notes" : "<p>\nLogs out the current user.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/forgottenPassword",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_forgottenPassword",
+      "responseClass" : "boolean",
+      "summary" : "Resend the user's password by e-mail",
+      "notes" : "<p>\nIf the user forgot his password, he can request to receive it by e-mail.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "ForgottenPasswordRequest",
+        "description" : "The forgotten password request",
+        "dataType" : "ForgottenPasswordRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/changePassword",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_changePassword",
+      "responseClass" : "boolean",
+      "summary" : "Change the user's password",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "ChangePasswordRequest",
+        "description" : "The change password request",
+        "dataType" : "ChangePasswordRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/verify",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_verify",
+      "responseClass" : "boolean",
+      "summary" : "Verify the currently authenticated user",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "VerifyUserRequest",
+        "description" : "The code that was previously sent to the user's cell phone",
+        "dataType" : "VerifyUserRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/generateNewVerificationCode",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_generateNewVerificationCode",
+      "responseClass" : "void",
+      "summary" : "Generate a new verification code and resend it to the user's cell phone",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "verificationMessageText",
+        "description" : "The verification message text",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile",
+    "operations" : [ {
+      "httpMethod" : "PUT",
+      "nickname" : "PUT__1_customerProfile",
+      "responseClass" : "CustomerProfile",
+      "summary" : "Update specific user customer profile data for his account or sub-account",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "CustomerProfile",
+        "description" : "Updated customer profile data",
+        "dataType" : "CustomerProfile",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile",
+      "responseClass" : "CustomerProfile",
+      "summary" : "Retrieve the current (or his sub-account's) user's customer profile",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/account",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_account",
+      "responseClass" : "Account",
+      "summary" : "Get the current user's account",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/balance",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_balance",
+      "responseClass" : "AccountBalance",
+      "summary" : "Get the current user's account balance",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/billingAddress/list",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_billingAddress_list",
+      "responseClass" : "Array[BillingAddress]",
+      "summary" : "Retrieve a list of the current user's billing addresses",
+      "notes" : "<p>\nBoth active and inactive addresses are returned.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/username/check",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_username_check",
+      "responseClass" : "boolean",
+      "summary" : "Check if the username is available",
+      "notes" : "<p>\nCheck if the specified username is available.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "username",
+        "description" : "The username to check for availability",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/password/check",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_password_check",
+      "responseClass" : "string",
+      "summary" : "Check the password against platform password complexity rules",
+      "notes" : "<p>\nDetermines the specified password strength, based on the platform's password complexity rules.\n<p>\nReturns one of the following responses, denoting the given password's strength: \n<code>INVALID</code>, <code>WEAK</code>, <code>GOOD</code>, or <code>STRONG</code>.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "password",
+        "description" : "The password to check",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/password/generate",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_password_generate",
+      "responseClass" : "string",
+      "summary" : "Generate a password",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/timeZone",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_timeZone",
+      "responseClass" : "TimeZone",
+      "summary" : "Retrieve the current user's time zone",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/payments/availableCurrencies",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_payments_availableCurrencies",
+      "responseClass" : "Array[Currency]",
+      "summary" : "Get available currencies",
+      "notes" : "<p>\r\nReturns all available currencies for the current account.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/payments/funds",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_payments_funds",
+      "responseClass" : "int",
+      "summary" : "Add funds to the current user's account",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "form",
+        "name" : "accountKey",
+        "description" : "Account key",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "ammount",
+        "description" : "Amount to add",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "currency",
+        "description" : "Currency code",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "description",
+        "description" : "A description",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/payments/rollbackTransaction",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_payments_rollbackTransaction",
+      "responseClass" : "RollbackTransactionResponse",
+      "summary" : "Roll back the transaction by transaction ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "form",
+        "name" : "transactionId",
+        "description" : "The trasaction ID to roll back",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "note",
+        "description" : "A note",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/registeredSender/list",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_registeredSender_list",
+      "responseClass" : "Array[RegisteredNumericSender]",
+      "summary" : "Get the current user's registered numbers",
+      "notes" : "<p>\nReturns the list of the current user's registered sender numbers, which can be used as the sender value or waiting for verification.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/registeredSender/register",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_registeredSender_register",
+      "responseClass" : "void",
+      "summary" : "Register a new sender number",
+      "notes" : "<p>\nThe sender number to register must be a valid telephone number to which a responding SMS may be sent. \nA verification code will be sent via SMS as a reference. The numeric sender will be available to use after \nverification (for verification, see the method <code>POST /1/customerProfile/registeredSender/verify</code>).",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "NumericSenderAddRequest",
+        "description" : "The request for registering a new sender number",
+        "dataType" : "NumericSenderAddRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/registeredSender/verify",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_registeredSender_verify",
+      "responseClass" : "void",
+      "summary" : "Verify a numeric sender",
+      "notes" : "<p>\nVerify a numeric sender. After the verification, the numeric sender can be used.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "NumericSenderVerifyRequest",
+        "description" : "The verify numeric sender request",
+        "dataType" : "NumericSenderVerifyRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/registeredSender/unregister/{id}",
+    "operations" : [ {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_customerProfile_registeredSender_unregister__id_",
+      "responseClass" : "void",
+      "summary" : "Delete a registered numeric sender number",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "id",
+        "description" : "ID of the sender number entry. You can get this ID by retrieving all your registered numeric sender numbers",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/registeredSender/resend",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_customerProfile_registeredSender_resend",
+      "responseClass" : "void",
+      "summary" : "Generate a new verification code and send it to the sender via SMS",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "NumericSenderAddRequest",
+        "description" : "The request",
+        "dataType" : "NumericSenderAddRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/topup/banks",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_topup_banks",
+      "responseClass" : "Array[Bank]",
+      "summary" : "Retrieve the current user's banks",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/topup/isAccountPrepaid",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_topup_isAccountPrepaid",
+      "responseClass" : "boolean",
+      "summary" : "Check if the account is prepaid",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/topup/onlinePaymentEnabled",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_topup_onlinePaymentEnabled",
+      "responseClass" : "boolean",
+      "summary" : "Check if online payment is enabled for the current user",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/topup/paymentGatewayConfig/barclay",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_topup_paymentGatewayConfig_barclay",
+      "responseClass" : "PaymentGatewayConfigBarclay",
+      "summary" : "Retrieve the configuration of the payment gateway",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/customerProfile/topup/vat",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_customerProfile_topup_vat",
+      "responseClass" : "string",
+      "summary" : "Get the VAT for the given address, account and date",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "billingAddressId",
+        "description" : "Billing address ID",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "paymentDate",
+        "description" : "Payment date",
+        "dataType" : "Date",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "PaymentGatewayConfigBarclay" : {
+      "id" : "PaymentGatewayConfigBarclay",
+      "properties" : {
+        "callbackUser" : {
+          "type" : "string",
+          "description" : "Callback user",
+          "required" : false
+        },
+        "callbackPass" : {
+          "type" : "string",
+          "description" : "Callback password",
+          "required" : false
+        },
+        "actionURL" : {
+          "type" : "string",
+          "description" : "Action URL",
+          "required" : false
+        },
+        "skinCode" : {
+          "type" : "string",
+          "description" : "Skin code",
+          "required" : false
+        },
+        "hmacSecret" : {
+          "type" : "string",
+          "description" : "HMAC secret",
+          "required" : false
+        },
+        "merchantAccount" : {
+          "type" : "string",
+          "description" : "Merchant account",
+          "required" : false
+        }
+      }
+    },
+    "SignupRequest" : {
+      "id" : "SignupRequest",
+      "properties" : {
+        "dontSendWelcomeMessage" : {
+          "type" : "boolean",
+          "description" : "If we should send the welcome message upon user signup",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "captchaType" : {
+          "type" : "string",
+          "description" : "Captcha type",
+          "allowableValues" : {
+            "values" : [ "0", "1" ],
+            "valueType" : "List"
+          }
+        },
+        "captchaAnswer" : {
+          "type" : "string",
+          "description" : "Captcha answer",
+          "required" : false
+        },
+        "forename" : {
+          "type" : "string",
+          "description" : "Forename",
+          "required" : false
+        },
+        "countryCode" : {
+          "type" : "string",
+          "description" : "Country code",
+          "required" : false
+        },
+        "surname" : {
+          "type" : "string",
+          "description" : "Surname",
+          "required" : false
+        },
+        "gsm" : {
+          "type" : "string",
+          "description" : "Phone number",
+          "required" : false
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password",
+          "required" : false
+        },
+        "verificationMessageText" : {
+          "type" : "string",
+          "description" : "The verification message text",
+          "required" : false
+        },
+        "username" : {
+          "type" : "string",
+          "description" : "Username",
+          "required" : false
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "E-mail",
+          "required" : false
+        },
+        "captchaId" : {
+          "type" : "string",
+          "description" : "Captcha ID",
+          "required" : false
+        },
+        "timezoneId" : {
+          "type" : "int",
+          "description" : "Timezone ID",
+          "required" : false
+        }
+      }
+    },
+    "RollbackTransactionResponse" : {
+      "id" : "RollbackTransactionResponse",
+      "properties" : {
+        "currencyCode" : {
+          "type" : "string",
+          "description" : "Currency code",
+          "required" : false
+        },
+        "ammount" : {
+          "type" : "string",
+          "description" : "Amount",
+          "required" : false
+        }
+      }
+    },
+    "Bank" : {
+      "id" : "Bank",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Bank ID",
+          "required" : false
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "Address",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name",
+          "required" : false
+        },
+        "postCode" : {
+          "type" : "string",
+          "description" : "Post code",
+          "required" : false
+        },
+        "processingFee" : {
+          "type" : "string",
+          "description" : "Processing fee",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Code",
+          "required" : false
+        },
+        "nationalClearingCode" : {
+          "type" : "string",
+          "description" : "National clearing code",
+          "required" : false
+        },
+        "swift" : {
+          "type" : "string",
+          "description" : "SWIFT",
+          "required" : false
+        },
+        "city" : {
+          "type" : "string",
+          "description" : "City",
+          "required" : false
+        },
+        "country" : {
+          "type" : "Country",
+          "description" : "Country",
+          "required" : false
+        },
+        "iban" : {
+          "type" : "string",
+          "description" : "IBAN",
+          "required" : false
+        }
+      }
+    },
+    "AccountBalance" : {
+      "id" : "AccountBalance",
+      "properties" : {
+        "balance" : {
+          "type" : "string",
+          "description" : "Account balance",
+          "required" : false
+        },
+        "currency" : {
+          "type" : "Currency",
+          "description" : "Currency object",
+          "required" : false
+        }
+      }
+    },
+    "LoginRequest" : {
+      "id" : "LoginRequest",
+      "properties" : {
+        "username" : {
+          "type" : "string",
+          "description" : "Username",
+          "required" : false
+        },
+        "allowChangeIP" : {
+          "type" : "boolean",
+          "description" : "Allow change IP?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password",
+          "required" : false
+        }
+      }
+    },
+    "NumericSenderVerifyRequest" : {
+      "id" : "NumericSenderVerifyRequest",
+      "properties" : {
+        "gsmNumber" : {
+          "type" : "string",
+          "description" : "MSISDN (telephone number)",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Code",
+          "required" : false
+        }
+      }
+    },
+    "Account" : {
+      "id" : "Account",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Deprecated. Use <code>key</code>",
+          "required" : false
+        },
+        "parentId" : {
+          "type" : "int",
+          "description" : "Deprecated. Use <code>parentKey</code>",
+          "required" : false
+        },
+        "parentKey" : {
+          "type" : "string",
+          "description" : "Parent key",
+          "required" : false
+        },
+        "additionalProperties" : {
+          "type" : "Array",
+          "description" : "Additional properties",
+          "required" : false
+        },
+        "currencyId" : {
+          "type" : "int",
+          "description" : "Currency ID",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name",
+          "required" : false
+        },
+        "dateCreated" : {
+          "type" : "Date",
+          "description" : "Date created",
+          "required" : false
+        },
+        "companyId" : {
+          "type" : "int",
+          "description" : "Company ID",
+          "required" : false
+        },
+        "key" : {
+          "type" : "string",
+          "description" : "Account key",
+          "required" : false
+        },
+        "timeZoneId" : {
+          "type" : "int",
+          "description" : "Time zone ID",
+          "required" : false
+        }
+      }
+    },
+    "BillingAddress" : {
+      "id" : "BillingAddress",
+      "properties" : {
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "street" : {
+          "type" : "string",
+          "description" : "Street",
+          "required" : false
+        },
+        "postCode" : {
+          "type" : "string",
+          "description" : "Post code",
+          "required" : false
+        },
+        "stateCode" : {
+          "type" : "string",
+          "description" : "State code",
+          "required" : false
+        },
+        "used" : {
+          "type" : "boolean",
+          "description" : "Used",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "companyName" : {
+          "type" : "string",
+          "description" : "Company name",
+          "required" : false
+        },
+        "city" : {
+          "type" : "string",
+          "description" : "City",
+          "required" : false
+        },
+        "id" : {
+          "type" : "int",
+          "description" : "ID",
+          "required" : false
+        },
+        "accountKey" : {
+          "type" : "string",
+          "description" : "Account ID",
+          "required" : false
+        },
+        "defaultBillingDescription" : {
+          "type" : "string",
+          "description" : "Default billing description",
+          "required" : false
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description",
+          "required" : false
+        },
+        "active" : {
+          "type" : "boolean",
+          "description" : "Active",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "vatNumber" : {
+          "type" : "string",
+          "description" : "VAT number",
+          "required" : false
+        },
+        "companyRegistrationNumber" : {
+          "type" : "string",
+          "description" : "Company registration number",
+          "required" : false
+        },
+        "manualCountryName" : {
+          "type" : "string",
+          "description" : "Manual country name",
+          "required" : false
+        }
+      }
+    },
+    "VerifyUserRequest" : {
+      "id" : "VerifyUserRequest",
+      "properties" : {
+        "verificationCode" : {
+          "type" : "string",
+          "description" : "The user verification code, which was previously sent to the user's cell phone",
+          "required" : false
+        }
+      }
+    },
+    "Country" : {
+      "id" : "Country",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "prefix" : {
+          "type" : "string",
+          "description" : "Country prefix (the calling code)",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Country name",
+          "required" : false
+        },
+        "locale" : {
+          "type" : "string",
+          "description" : "Country locale",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Country code (two-letter code)",
+          "required" : false
+        }
+      }
+    },
+    "CustomerProfile" : {
+      "id" : "CustomerProfile",
+      "properties" : {
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "enabled" : {
+          "type" : "boolean",
+          "description" : "Enabled",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "accountId" : {
+          "type" : "int",
+          "description" : "Account ID",
+          "required" : false
+        },
+        "fax" : {
+          "type" : "string",
+          "description" : "Fax number",
+          "required" : false
+        },
+        "msn" : {
+          "type" : "string",
+          "description" : "MSN",
+          "required" : false
+        },
+        "forename" : {
+          "type" : "string",
+          "description" : "Forename",
+          "required" : false
+        },
+        "secondaryLanguageId" : {
+          "type" : "int",
+          "description" : "Secondary language ID",
+          "required" : false
+        },
+        "street" : {
+          "type" : "string",
+          "description" : "Street",
+          "required" : false
+        },
+        "countryCode" : {
+          "type" : "string",
+          "description" : "Country code. Can be used instead of the <code>countryId</code> when saving",
+          "required" : false
+        },
+        "surname" : {
+          "type" : "string",
+          "description" : "Surname",
+          "required" : false
+        },
+        "gsm" : {
+          "type" : "string",
+          "description" : "Mobile phone number",
+          "required" : false
+        },
+        "city" : {
+          "type" : "string",
+          "description" : "City",
+          "required" : false
+        },
+        "id" : {
+          "type" : "int",
+          "description" : "Deprecated. Use <code>key</code>",
+          "required" : false
+        },
+        "username" : {
+          "type" : "string",
+          "description" : "Username",
+          "required" : false
+        },
+        "accountKey" : {
+          "type" : "string",
+          "description" : "Account key",
+          "required" : false
+        },
+        "canSendTraffic" : {
+          "type" : "boolean",
+          "description" : "Can send traffic?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "E-mail",
+          "required" : false
+        },
+        "zipCode" : {
+          "type" : "string",
+          "description" : "ZIP code",
+          "required" : false
+        },
+        "locked" : {
+          "type" : "boolean",
+          "description" : "Locked",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "telephone" : {
+          "type" : "string",
+          "description" : "Phone number",
+          "required" : false
+        },
+        "primaryLanguageId" : {
+          "type" : "int",
+          "description" : "Primary language ID",
+          "required" : false
+        },
+        "key" : {
+          "type" : "string",
+          "description" : "Key",
+          "required" : false
+        },
+        "skype" : {
+          "type" : "string",
+          "description" : "Skype",
+          "required" : false
+        }
+      }
+    },
+    "NumericSenderAddRequest" : {
+      "id" : "NumericSenderAddRequest",
+      "properties" : {
+        "accountKey" : {
+          "type" : "string",
+          "description" : "Account key",
+          "required" : false
+        },
+        "sendRegistrationCode" : {
+          "type" : "boolean",
+          "description" : "Send registration code? Default is true",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description",
+          "required" : false
+        },
+        "gsmNumber" : {
+          "type" : "string",
+          "description" : "MSIDN (telephone number)",
+          "required" : false
+        }
+      }
+    },
+    "RegisteredNumericSender" : {
+      "id" : "RegisteredNumericSender",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "ID",
+          "required" : false
+        },
+        "accountKey" : {
+          "type" : "string",
+          "description" : "Account key",
+          "required" : false
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Registered numeric sender status",
+          "allowableValues" : {
+            "values" : [ "Not verified", "Code sent", "Verified" ],
+            "valueType" : "List"
+          }
+        },
+        "retryCount" : {
+          "type" : "int",
+          "description" : "Retry count",
+          "required" : false
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description",
+          "required" : false
+        },
+        "number" : {
+          "type" : "string",
+          "description" : "Numeric sender number",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Code",
+          "required" : false
+        }
+      }
+    },
+    "ForgottenPasswordRequest" : {
+      "id" : "ForgottenPasswordRequest",
+      "properties" : {
+        "username" : {
+          "type" : "string",
+          "description" : "Username",
+          "required" : false
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "E-mail",
+          "required" : false
+        }
+      }
+    },
+    "SignupResponse" : {
+      "id" : "SignupResponse",
+      "properties" : {
+        "verified" : {
+          "type" : "boolean",
+          "description" : "Is the user verified?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "ibAuthCookie" : {
+          "type" : "string",
+          "description" : "Infobip Authentication Cookie",
+          "required" : false
+        }
+      }
+    },
+    "ChangePasswordRequest" : {
+      "id" : "ChangePasswordRequest",
+      "properties" : {
+        "username" : {
+          "type" : "string",
+          "description" : "Username",
+          "required" : false
+        },
+        "newPassword" : {
+          "type" : "string",
+          "description" : "New password",
+          "required" : false
+        },
+        "oldPassword" : {
+          "type" : "string",
+          "description" : "Old password",
+          "required" : false
+        }
+      }
+    },
+    "TimeZone" : {
+      "id" : "TimeZone",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Time zone ID",
+          "required" : false
+        },
+        "standardUtcOffset" : {
+          "type" : "int",
+          "description" : "Time zone standard UTC offset",
+          "required" : false
+        },
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "dstStartTime" : {
+          "type" : "long",
+          "description" : "Time zone DST start time",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Time zone name",
+          "required" : false
+        },
+        "dstOffset" : {
+          "type" : "int",
+          "description" : "Time zone DST offset",
+          "required" : false
+        },
+        "dstEndTime" : {
+          "type" : "long",
+          "description" : "Time zone DST end time",
+          "required" : false
+        }
+      }
+    },
+    "LoginResponse" : {
+      "id" : "LoginResponse",
+      "properties" : {
+        "verified" : {
+          "type" : "boolean",
+          "description" : "Is the user verified?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "ibAuthCookie" : {
+          "type" : "string",
+          "description" : "Infobip Authentication Cookie",
+          "required" : false
+        }
+      }
+    },
+    "Currency" : {
+      "id" : "Currency",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Currency ID",
+          "required" : false
+        },
+        "currencyName" : {
+          "type" : "string",
+          "description" : "Currency name",
+          "required" : false
+        },
+        "symbol" : {
+          "type" : "string",
+          "description" : "Currency symbol",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Currency code",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

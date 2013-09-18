@@ -1,0 +1,66 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "TimeZone",
+  "apis" : [ {
+    "path" : "/1/timezones",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_timezones",
+      "responseClass" : "Array[TimeZone]",
+      "summary" : "Find a country's time zones by country code",
+      "notes" : "<p>\nReturns all time zones for the given country.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "countryCode",
+        "description" : "Two-letter country code",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "TimeZone" : {
+      "id" : "TimeZone",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Time zone ID",
+          "required" : false
+        },
+        "standardUtcOffset" : {
+          "type" : "int",
+          "description" : "Time zone standard UTC offset",
+          "required" : false
+        },
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "dstStartTime" : {
+          "type" : "long",
+          "description" : "Time zone DST start time",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Time zone name",
+          "required" : false
+        },
+        "dstOffset" : {
+          "type" : "int",
+          "description" : "Time zone DST offset",
+          "required" : false
+        },
+        "dstEndTime" : {
+          "type" : "long",
+          "description" : "Time zone DST end time",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

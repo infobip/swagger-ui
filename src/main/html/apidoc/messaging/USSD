@@ -1,0 +1,109 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "USSD",
+  "apis" : [ {
+    "path" : "/1/ussd/outbound",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_ussd_outbound",
+      "responseClass" : "USSDResponse",
+      "summary" : "Send a message over USSD",
+      "notes" : "<p>\nInitiate an USSD session and send a message.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "USSDRequest",
+        "description" : "The USSD request",
+        "dataType" : "USSDRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "InboundMessage" : {
+      "id" : "InboundMessage",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "The SMS message content",
+          "required" : false
+        },
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "The sender MSISDN or other identifying number",
+          "required" : false
+        },
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "Contains an URL uniquely identifying this SMS message",
+          "required" : false
+        },
+        "dateTime" : {
+          "type" : "Date",
+          "description" : "The date/time that the SMS message was sent",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "The recipient MSISDN or other identifying number",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "A server-generated message identifier; an unique message ID for the message",
+          "required" : false
+        },
+        "dateTimeAsDate" : {
+          "type" : "Date",
+          "description" : "alternate method to get the message date/time in java.util.Date format",
+          "required" : false
+        }
+      }
+    },
+    "USSDRequest" : {
+      "id" : "USSDRequest",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "Message content",
+          "required" : false
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "Destination MSISDN (telephone number)",
+          "required" : false
+        },
+        "stopSession" : {
+          "type" : "boolean",
+          "description" : "Set to <code>true</code> to stop the USSD session",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "USSDResponse" : {
+      "id" : "USSDResponse",
+      "properties" : {
+        "message" : {
+          "type" : "InboundMessage",
+          "description" : "Inbound SMS message",
+          "required" : false
+        },
+        "sessionFinished" : {
+          "type" : "boolean",
+          "description" : "Indicates if the USSD session is finished",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

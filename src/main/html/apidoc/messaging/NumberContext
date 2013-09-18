@@ -1,0 +1,319 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "NumberContext",
+  "apis" : [ {
+    "path" : "/1/terminalstatus/queries/roamingStatus",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_terminalstatus_queries_roamingStatus",
+      "responseClass" : "Roaming",
+      "summary" : "Retrieve the roaming status and whether the mobile number is ported or not",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "address",
+        "description" : "The mobile number to enquire",
+        "dataType" : "Array",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "notifyURL",
+        "description" : "If specified, you will be notified of the result with a HTTP request to this URL.",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "clientCorrelator",
+        "description" : "Active only if <code>notifyURL</code> is specified, otherwise ignored. Uniquely identifies this request. If there is a communication failure during the request, using the same clientCorrelator when retrying the request helps the operator avoiding performing the same request twice.",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "callbackData",
+        "description" : "Active only if <code>notifyURL</code> is specified, otherwise ignored. This is some custom data to pass back in the notification to your <code>notifyURL</code>. You can use this data to identify your request, or any other useful data, such as a function name.",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "Roaming$ServingMccMnc" : {
+      "id" : "Roaming$ServingMccMnc",
+      "properties" : {
+        "mcc" : {
+          "type" : "string",
+          "description" : "TODO",
+          "required" : false
+        },
+        "mnc" : {
+          "type" : "string",
+          "description" : "TODO",
+          "required" : false
+        }
+      }
+    },
+    "Roaming" : {
+      "id" : "Roaming",
+      "properties" : {
+        "retrievalStatus" : {
+          "type" : "string",
+          "description" : "The response status. Possible values are: <code>Retrieved</code>, <code>Error</code>",
+          "required" : false
+        },
+        "extendedData" : {
+          "type" : "HlrResponseData",
+          "description" : "Original, detailed HLR data",
+          "required" : false
+        },
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "A self-referring URL",
+          "required" : false
+        },
+        "address" : {
+          "type" : "string",
+          "description" : "The MSISDN of the mobile terminal",
+          "required" : false
+        },
+        "currentRoaming" : {
+          "type" : "string",
+          "description" : "The current roaming status. Possible values are: <code>InternationalRoaming</code> (terminal is in a different\r\ncountry from that in which it is registered with a home operator), <code>DomesticRoaming</code> (terminal is\r\nconnected to another operator in the terminal’s registered home country), <code>NotRoaming</code> (terminal is\r\nconnected to its home operator)",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "Custom client-provided data when pushing HLR to a customer's URL",
+          "required" : false
+        },
+        "servingMccMnc" : {
+          "type" : "Roaming$ServingMccMnc",
+          "description" : "In case the terminal was successfully contacted, <code>servingMccMnc</code> contains the connection profile\r\ndetails",
+          "required" : false
+        }
+      }
+    },
+    "HlrResponseData" : {
+      "id" : "HlrResponseData",
+      "properties" : {
+        "originalNetworkServiceProviderName" : {
+          "type" : "string",
+          "description" : "Original network service provider name",
+          "required" : false
+        },
+        "originalNetworkServiceProviderId" : {
+          "type" : "int",
+          "description" : "Original network service provider ID",
+          "required" : false
+        },
+        "originalCountryPrefix" : {
+          "type" : "string",
+          "description" : "Original country prefix",
+          "required" : false
+        },
+        "mcc" : {
+          "type" : "string",
+          "description" : "MCC",
+          "required" : false
+        },
+        "submitTime" : {
+          "type" : "Date",
+          "description" : "Submit time",
+          "required" : false
+        },
+        "roamingCountryName" : {
+          "type" : "string",
+          "description" : "Roaming country name",
+          "required" : false
+        },
+        "roamingCountryPrefix" : {
+          "type" : "string",
+          "description" : "Roaming country prefix",
+          "required" : false
+        },
+        "portedCountryName" : {
+          "type" : "string",
+          "description" : "Ported country name",
+          "required" : false
+        },
+        "roamingNetworkPrefix" : {
+          "type" : "string",
+          "description" : "Roaming network prefix",
+          "required" : false
+        },
+        "originalNetworkPrefix" : {
+          "type" : "string",
+          "description" : "Original network prefix",
+          "required" : false
+        },
+        "statusId" : {
+          "type" : "int",
+          "description" : "Status ID",
+          "required" : false
+        },
+        "gsmErrorCode" : {
+          "type" : "int",
+          "description" : "GSM error code",
+          "required" : false
+        },
+        "roamingNetworkServiceProviderName" : {
+          "type" : "string",
+          "description" : "Roaming network service provider name",
+          "required" : false
+        },
+        "roamingNetworkServiceProviderId" : {
+          "type" : "int",
+          "description" : "Roaming network service provider ID",
+          "required" : false
+        },
+        "doneTime" : {
+          "type" : "Date",
+          "description" : "Done time",
+          "required" : false
+        },
+        "portedCountryCode" : {
+          "type" : "string",
+          "description" : "Ported country code",
+          "required" : false
+        },
+        "mnc" : {
+          "type" : "string",
+          "description" : "MNC",
+          "required" : false
+        },
+        "roamingMnc" : {
+          "type" : "string",
+          "description" : "Roaming MNC",
+          "required" : false
+        },
+        "portedNetworkServiceProviderId" : {
+          "type" : "int",
+          "description" : "Ported network service provider ID",
+          "required" : false
+        },
+        "roamingMccMnc" : {
+          "type" : "string",
+          "description" : "Roaming MCC/MNC",
+          "required" : false
+        },
+        "servingMsc" : {
+          "type" : "string",
+          "description" : "Serving MSC",
+          "required" : false
+        },
+        "numberInRoaming" : {
+          "type" : "boolean",
+          "description" : "Is the number roaming?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "servingHlr" : {
+          "type" : "string",
+          "description" : "Serving HLR",
+          "required" : false
+        },
+        "roamingCountryCode" : {
+          "type" : "string",
+          "description" : "Roaming country code",
+          "required" : false
+        },
+        "roamingNetworkName" : {
+          "type" : "string",
+          "description" : "Roaming network name",
+          "required" : false
+        },
+        "pricePerMessage" : {
+          "type" : "double",
+          "description" : "Price per message",
+          "required" : false
+        },
+        "mccMnc" : {
+          "type" : "string",
+          "description" : "MCC/MNC",
+          "required" : false
+        },
+        "roamingMcc" : {
+          "type" : "string",
+          "description" : "Roaming MCC",
+          "required" : false
+        },
+        "portedNetworkName" : {
+          "type" : "string",
+          "description" : "Ported network name",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "Destination address",
+          "required" : false
+        },
+        "isNumberPorted" : {
+          "type" : "boolean",
+          "description" : "Is the number ported?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "originalCountryCode" : {
+          "type" : "string",
+          "description" : "Original country code",
+          "required" : false
+        },
+        "censoredServingMsc" : {
+          "type" : "string",
+          "description" : "Censored serving MSC",
+          "required" : false
+        },
+        "portedCountryPrefix" : {
+          "type" : "string",
+          "description" : "Ported country prefix",
+          "required" : false
+        },
+        "imsi" : {
+          "type" : "string",
+          "description" : "IMSI",
+          "required" : false
+        },
+        "portedNetworkPrefix" : {
+          "type" : "string",
+          "description" : "Ported network prefix",
+          "required" : false
+        },
+        "portedNetworkServiceProviderName" : {
+          "type" : "string",
+          "description" : "Ported network service provider name",
+          "required" : false
+        },
+        "originalCountryName" : {
+          "type" : "string",
+          "description" : "Original country name",
+          "required" : false
+        },
+        "originalNetworkName" : {
+          "type" : "string",
+          "description" : "Original network name",
+          "required" : false
+        },
+        "isNumberCorrect" : {
+          "type" : "boolean",
+          "description" : "Is the number correct?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

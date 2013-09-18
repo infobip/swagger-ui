@@ -1,0 +1,44 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "Languages",
+  "apis" : [ {
+    "path" : "/1/languages",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_languages",
+      "responseClass" : "Array[Language]",
+      "summary" : "Get the list of languages",
+      "notes" : "<p>\r\nGet the list of supported languages.",
+      "parameters" : [ ]
+    } ]
+  } ],
+  "models" : {
+    "Language" : {
+      "id" : "Language",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Language ID",
+          "required" : false
+        },
+        "languageCode" : {
+          "type" : "string",
+          "description" : "Language ISO code",
+          "required" : false
+        },
+        "languageNameLocal" : {
+          "type" : "string",
+          "description" : "Local (native) language name",
+          "required" : false
+        },
+        "languageName" : {
+          "type" : "string",
+          "description" : "Language name",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

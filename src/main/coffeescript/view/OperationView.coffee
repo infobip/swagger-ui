@@ -229,6 +229,12 @@ class OperationView extends Backbone.View
     $(".response_throbber", $(@el)).hide()
     hljs.highlightBlock($('.response_body', $(@el))[0])
 
+    if data._raw.statusCode == 401 then $('.authlink', $(@el)).attr('href','https://accounts.infobip.com/ac/res/frm/login?callback=' + window.location) 
+
+
+    if data._raw.statusCode == 401 then $('.autherr', $(@el)).show() else $('.autherr', $(@el)).hide()
+
+    
   toggleOperationContent: ->
     elem = $('#' + Docs.escapeResourceName(@model.resourceName) + "_" + @model.nickname + "_" + @model.method + "_" + @model.number + "_content")
     if elem.is(':visible') then Docs.collapseOperation(elem) else Docs.expandOperation(elem)

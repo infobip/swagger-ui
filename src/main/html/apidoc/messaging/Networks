@@ -1,0 +1,149 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "Networks",
+  "apis" : [ {
+    "path" : "/1/networks",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_networks",
+      "responseClass" : "Array[Network]",
+      "summary" : "Find the country's networks by country code",
+      "notes" : "<p>\nReturns a list of the given country's networks.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "countryCode",
+        "description" : "A two-letter country code",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/networks/resolve",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_networks_resolve",
+      "responseClass" : "Array[NumberInfo]",
+      "summary" : "Resolve multiple phone numbers",
+      "notes" : "<p>\nValidates the provided MSISDN numbers.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "List",
+        "description" : "<span style=\"background-color:red\"><b>TODO</b></span>",
+        "dataType" : "Array",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/networks/resolve/{gsmNumber}",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_networks_resolve__gsmNumber_",
+      "responseClass" : "NumberInfo",
+      "summary" : "Resolve a single phone number",
+      "notes" : "<p>\nValidates the provided MSISDN number.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "gsmNumber",
+        "description" : "The phone number (MSISDN) to resolve",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "NumberInfo" : {
+      "id" : "NumberInfo",
+      "properties" : {
+        "networkPrefix" : {
+          "type" : "string",
+          "description" : "Network prefix code",
+          "required" : false
+        },
+        "msisdn" : {
+          "type" : "string",
+          "description" : "MSISDN (the phone number)",
+          "required" : false
+        },
+        "network" : {
+          "type" : "Network",
+          "description" : "Network",
+          "required" : false
+        },
+        "country" : {
+          "type" : "Country",
+          "description" : "Country",
+          "required" : false
+        }
+      }
+    },
+    "Network" : {
+      "id" : "Network",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Network ID",
+          "required" : false
+        },
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "visible" : {
+          "type" : "boolean",
+          "description" : "Is visible",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Network name",
+          "required" : false
+        },
+        "nnc" : {
+          "type" : "string",
+          "description" : "Normalized network code (the MCC/MNC pair)",
+          "required" : false
+        }
+      }
+    },
+    "Country" : {
+      "id" : "Country",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "prefix" : {
+          "type" : "string",
+          "description" : "Country prefix (the calling code)",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Country name",
+          "required" : false
+        },
+        "locale" : {
+          "type" : "string",
+          "description" : "Country locale",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Country code (two-letter code)",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

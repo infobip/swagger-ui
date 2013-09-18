@@ -1,0 +1,581 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "Messaging",
+  "apis" : [ {
+    "path" : "/1/messaging/outbound/draft",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_messaging_outbound_draft",
+      "responseClass" : "SmsDraft",
+      "summary" : "Create a new SMS draft",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SmsDraft",
+        "description" : "SMS draft to create.<p>\r\n           Restrictions:\r\n           <ul>\r\n           <li><code>Name</code> field must not be null or empty</li>\r\n           <li><code>TimeZoneID</code> field must be an positive integer</li>\r\n           <li><code>RequestType</code> can not be null</li>\r\n           <li><code>ValidityPeriodHours</code> field must be an positive integer</li>\r\n           </ul>",
+        "dataType" : "SmsDraft",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "PUT",
+      "nickname" : "PUT__1_messaging_outbound_draft",
+      "responseClass" : "SmsDraft",
+      "summary" : "Update a SMS draft",
+      "notes" : "<p>\r\nUpdating a draft is only possible if the draft was created by the current user.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SmsDraft",
+        "description" : "Updated SMS draft",
+        "dataType" : "SmsDraft",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/{draftId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_messaging_outbound_draft__draftId_",
+      "responseClass" : "SmsDraft",
+      "summary" : "Retrieve a SMS draft by draft ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "draftId",
+        "description" : "SMS draft ID to retrieve",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_messaging_outbound_draft__draftId_",
+      "responseClass" : "void",
+      "summary" : "Delete a SMS draft identified by draft ID",
+      "notes" : "<p>\r\nOnly drafts created by the currently logged in user can be deleted.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "draftId",
+        "description" : "SMS draft ID to delete",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/send",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_messaging_outbound_draft_send",
+      "responseClass" : "int",
+      "summary" : "Send messages from the SMS draft identified by draft ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "form",
+        "name" : "draftId",
+        "description" : "SMS draft ID to send",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "saveJobAsName",
+        "description" : "Bulk send message job's name",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "deleteDraft",
+        "description" : "If true the SMS draft will be deleted when sent",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "notifyURL",
+        "description" : "An URL where the delivery reports of sent messages will be pushed to",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "campaignId",
+        "description" : "Campaign ID",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "campaignAction",
+        "description" : "Campaign action",
+        "dataType" : "form",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/analysis/{draftId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_messaging_outbound_draft_analysis__draftId_",
+      "responseClass" : "SmsDraftAnalysis",
+      "summary" : "Analyze the SMS draft identified by draft ID",
+      "notes" : "<p>\r\nThe returned analysis contains:\r\n<ul>\r\n<li>the count of invalid and valid messages\r\n<li>the count of messages per country\r\n<li>the network and their approximated cost\r\n</ul>",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "draftId",
+        "description" : "SMS draft ID to analyze",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/messages",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_messaging_outbound_draft_messages",
+      "responseClass" : "void",
+      "summary" : "Add SMS draft units to an existing SMS draft",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "form",
+        "name" : "draftId",
+        "description" : "SMS draft ID to add draft units to",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "smsDraftUnitsJson",
+        "description" : "SMS draft units JSON to add to the SMS draft",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/messages/synchronize",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_messaging_outbound_draft_messages_synchronize",
+      "responseClass" : "void",
+      "summary" : "Synchronize SMS draft units with an existing SMS draft",
+      "notes" : "<p>\r\nAdds the specified SMS draft units to an existing SMS draft, but only if the units aren't already\r\npart of the SMS draft, i.e. synchronize them.",
+      "parameters" : [ {
+        "paramType" : "form",
+        "name" : "draftId",
+        "description" : "SMS draft ID to synchronize the draft units to",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "form",
+        "name" : "smsDraftUnitsJson",
+        "description" : "SMS draft units JSON to synchronize with the SMS draft",
+        "dataType" : "form",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/messageList/{draftId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_messaging_outbound_draft_messageList__draftId_",
+      "responseClass" : "Array[SmsDraftUnit]",
+      "summary" : "Retrieve the SMS draft units included in the SMS draft identified by draft ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "draftId",
+        "description" : "SMS draft ID to retrieve draft units of",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "page",
+        "description" : "Page number",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "pageSize",
+        "description" : "Page size",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/messaging/outbound/draft/{draftId}/message",
+    "operations" : [ {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_messaging_outbound_draft__draftId__message",
+      "responseClass" : "void",
+      "summary" : "Remove SMS draft units from a SMS draft",
+      "notes" : "<p>\r\nRemoves SMS draft units (identified by draft unit IDs) from the SMS draft identified by draft ID.\r\n<p>\r\nOnly the owner of the SMS draft is allowed to manage the draft and its draft units.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "draftId",
+        "description" : "SMS draft ID to remove draft units from",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "id",
+        "description" : "Comma-separated list of SMS draft unit IDs to remove from the draft",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "SmsDraftAnalysis" : {
+      "id" : "SmsDraftAnalysis",
+      "properties" : {
+        "invalidMessagesCount" : {
+          "type" : "int",
+          "description" : "Invalid messages count",
+          "required" : false
+        },
+        "smsCountByNetwork" : {
+          "type" : "Array",
+          "description" : "SMS counts by network",
+          "required" : false,
+          "items" : {
+            "$ref" : "string"
+          }
+        },
+        "messageResumesPreview" : {
+          "type" : "Array",
+          "description" : "Message resumes preview",
+          "required" : false,
+          "items" : {
+            "$ref" : "string"
+          }
+        },
+        "validMessagesCount" : {
+          "type" : "int",
+          "description" : "Valid messages count",
+          "required" : false
+        },
+        "duplicateMessagesCount" : {
+          "type" : "int",
+          "description" : "Duplicate messages count",
+          "required" : false
+        },
+        "currency" : {
+          "type" : "Currency",
+          "description" : "Currency",
+          "required" : false
+        }
+      }
+    },
+    "SmsDraftUnit" : {
+      "id" : "SmsDraftUnit",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "SMS draft unit ID",
+          "required" : false
+        },
+        "sender" : {
+          "type" : "string",
+          "description" : "Sender. Overrides the SMS draft's sender",
+          "required" : false
+        },
+        "groupId" : {
+          "type" : "int",
+          "description" : "Recipient group ID",
+          "required" : false
+        },
+        "contactId" : {
+          "type" : "int",
+          "description" : "Recipient contact ID",
+          "required" : false
+        },
+        "msisdn" : {
+          "type" : "string",
+          "description" : "Recipient number (MSISDN)",
+          "required" : false
+        },
+        "importFrom" : {
+          "type" : "string",
+          "description" : "Import from",
+          "required" : false
+        },
+        "placeholderValues" : {
+          "type" : "Array",
+          "description" : "Placeholder values",
+          "required" : false
+        }
+      }
+    },
+    "AllowedMessageWindow" : {
+      "id" : "AllowedMessageWindow",
+      "properties" : {
+        "to" : {
+          "type" : "AllowedMessageWindow",
+          "description" : "To",
+          "required" : false
+        },
+        "minute" : {
+          "type" : "int",
+          "description" : "Minute",
+          "required" : false
+        },
+        "second" : {
+          "type" : "int",
+          "description" : "Second",
+          "required" : false
+        },
+        "month" : {
+          "type" : "int",
+          "description" : "Month",
+          "required" : false
+        },
+        "exclusions" : {
+          "type" : "Array",
+          "description" : "Excluded time windows",
+          "required" : false,
+          "items" : {
+            "$ref" : "AllowedMessageWindow"
+          }
+        },
+        "year" : {
+          "type" : "int",
+          "description" : "Year",
+          "required" : false
+        },
+        "from" : {
+          "type" : "AllowedMessageWindow",
+          "description" : "From",
+          "required" : false
+        },
+        "day" : {
+          "type" : "int",
+          "description" : "Day",
+          "required" : false
+        },
+        "hour" : {
+          "type" : "int",
+          "description" : "Hour",
+          "required" : false
+        },
+        "dayOfWeek" : {
+          "type" : "int",
+          "description" : "Day of week",
+          "required" : false
+        },
+        "timeZoneId" : {
+          "type" : "int",
+          "description" : "Time zone ID",
+          "required" : false
+        }
+      }
+    },
+    "CampaignAction" : {
+      "id" : "CampaignAction",
+      "properties" : {
+        "HELP" : {
+          "type" : "string",
+          "description" : "Identifies the MT as a help message, sent in response to a “help” keyword request from the handset.",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "WAPPUSH" : {
+          "type" : "string",
+          "description" : "Identifies the MT as a WAP push message.",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "declaringClass" : {
+          "type" : "class",
+          "description" : "TODO",
+          "required" : false
+        },
+        "CONTENT" : {
+          "type" : "string",
+          "description" : "Identifies the MT as a content delivery message.",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "WELCOME" : {
+          "type" : "string",
+          "description" : "Identifies the MT as a welcome message, sent when a subscriber is accepted into a program.",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "SYSTEM" : {
+          "type" : "string",
+          "description" : "Identifies the MT as an error or status message, sent in response to an unrecognized keyword for example.",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "TODO",
+          "required" : false
+        },
+        "ENUM$VALUES" : {
+          "type" : "Array",
+          "description" : "<span style=\"background-color:red\"><b>TODO</b></span>",
+          "required" : false,
+          "items" : {
+            "$ref" : "string"
+          }
+        },
+        "ordinal" : {
+          "type" : "int",
+          "description" : "TODO",
+          "required" : false
+        }
+      }
+    },
+    "Currency" : {
+      "id" : "Currency",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Currency ID",
+          "required" : false
+        },
+        "currencyName" : {
+          "type" : "string",
+          "description" : "Currency name",
+          "required" : false
+        },
+        "symbol" : {
+          "type" : "string",
+          "description" : "Currency symbol",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Currency code",
+          "required" : false
+        }
+      }
+    },
+    "SendingSpeed" : {
+      "id" : "SendingSpeed",
+      "properties" : {
+        "speed" : {
+          "type" : "int",
+          "description" : "Speed",
+          "required" : false
+        },
+        "timeUnit" : {
+          "type" : "string",
+          "description" : "Time unit",
+          "allowableValues" : {
+            "values" : [ "None", "Microsecond", "Milisecond", "Second", "Minute", "Hour", "Day" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "SmsDraft" : {
+      "id" : "SmsDraft",
+      "properties" : {
+        "text" : {
+          "type" : "string",
+          "description" : "Text",
+          "required" : false
+        },
+        "validityPeriodHours" : {
+          "type" : "int",
+          "description" : "SMS draft validity period. The maximum value is 48 hours. After the validity period has passed, unsent messages\r\nwill expire",
+          "required" : false
+        },
+        "isFlash" : {
+          "type" : "boolean",
+          "description" : "Is flash?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "requestType" : {
+          "type" : "string",
+          "description" : "Specifies the request type of this draft",
+          "allowableValues" : {
+            "values" : [ "SMS", "HLR", "NSMS", "PUSH" ],
+            "valueType" : "List"
+          }
+        },
+        "smsMessageType" : {
+          "type" : "string",
+          "description" : "<span style=\"background-color:red\"><b>TODO</b></span>",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "defaultSender" : {
+          "type" : "string",
+          "description" : "Default sender",
+          "required" : false
+        },
+        "id" : {
+          "type" : "int",
+          "description" : "Draft ID",
+          "required" : false
+        },
+        "allowedMessageWindow" : {
+          "type" : "AllowedMessageWindow",
+          "description" : "The allowed message send time window",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name. Must not be null or empty",
+          "required" : false
+        },
+        "sendingSpeed" : {
+          "type" : "SendingSpeed",
+          "description" : "Maximum sending speed",
+          "required" : false
+        },
+        "transliterationCharset" : {
+          "type" : "string",
+          "description" : "The text transliteration charset. Ex. if you specify <code>Greek</code>, the message will be sent transliterated\r\nto Greek text in GSM7 encoding, instead of Unicode (if possible)",
+          "allowableValues" : {
+            "values" : [ "Default", "None", "Greek", "Cyrillic", "CentralEuropean" ],
+            "valueType" : "List"
+          }
+        },
+        "scheduledDateTime" : {
+          "type" : "Date",
+          "description" : "Scheduled date and time",
+          "required" : false
+        },
+        "timezoneId" : {
+          "type" : "int",
+          "description" : "Time zone ID",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

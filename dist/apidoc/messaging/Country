@@ -1,0 +1,66 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "Country",
+  "apis" : [ {
+    "path" : "/1/countries",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_countries",
+      "responseClass" : "Array[Country]",
+      "summary" : "Get the list of all countries",
+      "notes" : "<p>\r\nReturns the list of all supported countries.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/countries/countryCode/{countryCode}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_countries_countryCode__countryCode_",
+      "responseClass" : "Country",
+      "summary" : "Find a country by country code",
+      "notes" : "<p>\r\nReturns a country based on the country code.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "countryCode",
+        "description" : "The two-letter country code",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "Country" : {
+      "id" : "Country",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "prefix" : {
+          "type" : "string",
+          "description" : "Country prefix (the calling code)",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Country name",
+          "required" : false
+        },
+        "locale" : {
+          "type" : "string",
+          "description" : "Country locale",
+          "required" : false
+        },
+        "code" : {
+          "type" : "string",
+          "description" : "Country code (two-letter code)",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

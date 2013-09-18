@@ -1,0 +1,78 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "NetworkPrefix",
+  "apis" : [ {
+    "path" : "/1/networkprefixes",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_networkprefixes",
+      "responseClass" : "Array[NetworkPrefix]",
+      "summary" : "Get the list of all network prefixes",
+      "notes" : "",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/networkprefixes/country/{countryId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_networkprefixes_country__countryId_",
+      "responseClass" : "Array[NetworkPrefix]",
+      "summary" : "Find the network prefixes by country ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "countryId",
+        "description" : "The country ID",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/networkprefixes/network/{networkId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_networkprefixes_network__networkId_",
+      "responseClass" : "Array[NetworkPrefix]",
+      "summary" : "Find the network prefixes by network ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "networkId",
+        "description" : "The network ID",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "NetworkPrefix" : {
+      "id" : "NetworkPrefix",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Network prefix ID",
+          "required" : false
+        },
+        "countryId" : {
+          "type" : "int",
+          "description" : "Country ID",
+          "required" : false
+        },
+        "networkPrefix" : {
+          "type" : "string",
+          "description" : "Network prefix",
+          "required" : false
+        },
+        "networkId" : {
+          "type" : "int",
+          "description" : "Network ID",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

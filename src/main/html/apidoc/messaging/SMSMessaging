@@ -1,0 +1,1327 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "SMSMessaging",
+  "apis" : [ {
+    "path" : "/1/smsmessaging/outbound/{senderAddress}/requests",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_outbound__senderAddress__requests",
+      "responseClass" : "SendSMSResult",
+      "summary" : "Send a SMS message to one or more mobile terminals",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SingleSMSRequest",
+        "description" : "The send SMS request",
+        "dataType" : "SingleSMSRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/requests",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_outbound_requests",
+      "responseClass" : "Array[SendSMSResult]",
+      "summary" : "Send multiple SMS messages to one or more mobile terminals",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SMSMessageList",
+        "description" : "The request object",
+        "dataType" : "SMSMessageList",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/requests/deliveryReports",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_requests_deliveryReports",
+      "responseClass" : "Array[DeliveryReport]",
+      "summary" : "Get all available delivery reports for the authenticated user",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "limit",
+        "description" : "Delivery report pull limit. Default is 0 for retrieving all delivery reports",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/requests/{requestID}/deliveryReports",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_requests__requestID__deliveryReports",
+      "responseClass" : "Array[DeliveryReport]",
+      "summary" : "Retrieve the delivery reports of the SMS identified by request ID",
+      "notes" : "<p>\nNote that a <code>DeliveryReport</code> is not the same as the <code>DeliveryInfo</code>\n(see <code>GET /1/smsmessaging/outbound/requests/{requestID}/deliveryInfos</code>),  \nas a <code>DeliveryReport</code> for a single message can be retrieved only once (in contrast to \n<code>DeliveryInfo</code>s, which may be requested multiple times).",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "requestID",
+        "description" : "ID obtained as the resource ID when the message has been sent. Normally this is same as the client correlator",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "limit",
+        "description" : "Delivery report pull limit. Default is 0, i.e. retrieve all delivery reports",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/requests/{requestID}/deliveryInfos",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_requests__requestID__deliveryInfos",
+      "responseClass" : "Array[DeliveryInfoList]",
+      "summary" : "Query the delivery status of the SMS identified by request ID",
+      "notes" : "<p>\nNote that a <code>deliveryInfo</code> is not the same as a <code>deliveryReport</code>. The user can ask for\n<code>deliveryInfo</code>s any time, even before the message is sent to the gateway, network and ultimately the\nmobile phone. <code>DeliveryInfo</code>s can be requested for all messages sent via a single REST method.\n<p>",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "requestID",
+        "description" : "The <code>requestId</code>, as returned from a send SMS request",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/subscriptions",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_subscriptions",
+      "responseClass" : "Array[DeliveryReportSubscription]",
+      "summary" : "Retrieve all delivery subscriptions for the current user",
+      "notes" : "<p>\nReturns the list of the current user's all delivery subscription resources.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/subscriptions/{subscriptionID}",
+    "operations" : [ {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_smsmessaging_outbound_subscriptions__subscriptionID_",
+      "responseClass" : "void",
+      "summary" : "Stop the subscription to delivery notifications",
+      "notes" : "<p>\nStop subscribing to delivery status notifications for all your sent SMS messages.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "The subscription ID, as created when the delivery receipt subscription was created",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_subscriptions__subscriptionID_",
+      "responseClass" : "Array[DeliveryReportSubscription]",
+      "summary" : "Retrieve a delivery subscription by subscription ID",
+      "notes" : "<p>\nReturns the delivery subscription resource for the specified subscription ID.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "ID for which to get the delivery subscription resource",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/{senderAddress}/subscriptions",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound__senderAddress__subscriptions",
+      "responseClass" : "Array[DeliveryReportSubscription]",
+      "summary" : "Retrieve the list of subscriptions for the specified <code>senderAddress</code>",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "senderAddress",
+        "description" : "Filter criteria for subscription. You can have multiple sender addresses. Since this is \n                     an URL path parameter, it must be URL-escaped",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_outbound__senderAddress__subscriptions",
+      "responseClass" : "Array[DeliveryReceiptSubscription]",
+      "summary" : "Start subscribing to delivery status notifications for all your sent SMS",
+      "notes" : "<p>\nYour URL will be notified via HTTP POST when the message has been delivered to the destination address. You can\nsubscribe to multiple URLs and multiple filters.\n<p>\nThe format of the delivery receipt notification sent to your <code>notifyURL</code> URL is:\n<pre>\n{\"deliveryInfoNotification\": {\n    \"callbackData\": \"12345\",\n    \"deliveryInfo\": {\n       \"address\": \"tel:+1350000001\",\n       \"deliveryStatus\": \"DeliveredToNetwork\"},\n    }}\n</pre>\n<p>\nThis notification will be sent for every SMS you have created. The <code>deliveryStatus</code> value in the\n<code>deliveryInfo</code> object can take the same values as in the \n<code>POST /1/smsmessaging/outbound/{senderAddress}/requests</code> method, except for\n<code>MessageWaiting</code>, since that is the initial status. The <code>callbackData</code> will also be passed\nback to you, echoing what you provided when you created a message to send or subscribed to delivery\nnotifications.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "senderAddress",
+        "description" : "Filter criteria. Based on a different senderAddresses you can filter the notifications to different\n\t\t\t\t\t\tURLs. Since this is an URL path parameter, it must be URL-escaped",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "body",
+        "name" : "SubscribeToDeliveryNotificationsRequest",
+        "description" : "The subscription request",
+        "dataType" : "SubscribeToDeliveryNotificationsRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/outbound/bulk/{bulkId}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_outbound_bulk__bulkId_",
+      "responseClass" : "Array[BulkJob]",
+      "summary" : "Get the bulk job by bulk job ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "bulkId",
+        "description" : "Bulk job ID",
+        "dataType" : "int",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/freeTrial",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_inbound_freeTrial",
+      "responseClass" : "MoSubscription",
+      "summary" : "Create a free trial inbound messaging subscription",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "FreeTrialInboundMessagesSubscriptionRequest",
+        "description" : "Free trial inbound messaging subscription request",
+        "dataType" : "FreeTrialInboundMessagesSubscriptionRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/registrations/{registrationID}/messages",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_registrations__registrationID__messages",
+      "responseClass" : "Array[InboundMessageList]",
+      "summary" : "Retrieve messages sent to your application",
+      "notes" : "<p>\nReturns the messages sent to the current user.\n<p>\nAfter a message has been retrieved, it is deleted from the server.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "registrationID",
+        "description" : "Not used. Put any string. The actual application message identification is done via the \n\t\t\t\t\t\t\tcurrent user's authentication.",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "maxBatchSize",
+        "description" : "The maximum number of messages to retrieve in this request.",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/subscriptions/{subscriptionID}",
+    "operations" : [ {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_smsmessaging_inbound_subscriptions__subscriptionID_",
+      "responseClass" : "void",
+      "summary" : "Stop the subscription to incoming message notifications",
+      "notes" : "<p>\nStops the subscription to notifications for SMS messages that have been sent to your application.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "The subscription ID, as returned when the SMS receipt subscription was created",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_subscriptions__subscriptionID_",
+      "responseClass" : "MoSubscription",
+      "summary" : "Get the subscription by subscription ID",
+      "notes" : "<p>\nReturns the inbound messaging subscription resource for the specified subscription ID.",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "The subscription ID",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/subscriptions",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_subscriptions",
+      "responseClass" : "MoSubscriptionsWrapper",
+      "summary" : "Get all inbound messaging subscriptions",
+      "notes" : "<p>\nReturns the list of all inbound messaging subscriptions for the current user.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "withoutCriteria",
+        "description" : "Without criteria?",
+        "dataType" : "boolean",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "page",
+        "description" : "Page number, default 1",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "pageSize",
+        "description" : "Page size, default 10",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_inbound_subscriptions",
+      "responseClass" : "ResourceReferenceWrapper",
+      "summary" : "Subscribe to notifications of messages sent to your application",
+      "notes" : "<p>\nThe format of the message receipt notification sent to your <code>notifyURL</code> URL is:\n<pre>\n{\"inboundSMSMessageNotification\": {\n    \"callbackData\": \"12345\",\n    \"inboundSMSMessage\": {\n        \"dateTime\": \"2009-11-19T12:00:00\",\n        \"destinationAddress\": \"3456\",\n        \"messageId\": \"mes1234\",\n        \"message\": \"Vote for Mega Boy Band\",\n        \"senderAddress\": \"+447825123456\"\n    }\n}}\n</pre>\n<p>\nThis notification will be sent for every SMS received (matching the optional criteria if provided). The\n<code>inboundMessageNotification</code> object includes any <code>callbackData</code> and an\n<code>inboundSMSMessage</code> array with pairs detailing:\n<ul>\n<li>The <code>dateTime</code> the message was received</li>\n<li><code>destinationAddress</code> is the number associated with your service (for example, an agreed short\ncode)</li>\n<li><code>messageId</code> is a server-generated message identifier</li>\n<li><code>message</code> is the SMS message itself</li>\n<li><code>resourceURL</code> is a link to the message</li>\n<li><code>senderAddress</code> the sender's MSISDN (telephone number)</li>\n</ul>",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "InboundMessagesSubscriptionRequest",
+        "description" : "The inbound messages subscription request",
+        "dataType" : "InboundMessagesSubscriptionRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "PUT",
+      "nickname" : "PUT__1_smsmessaging_inbound_subscriptions",
+      "responseClass" : "void",
+      "summary" : "Update the subscription of notifications of messages sent to your application",
+      "notes" : "<p>\nUpdate the subscription to notifications for SMS messages that have been sent to your application.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "UpdateInboundMessagesSubscriptionRequest",
+        "description" : "The update subscription request",
+        "dataType" : "UpdateInboundMessagesSubscriptionRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/available",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_available",
+      "responseClass" : "MoAvailableNumbersWrapper",
+      "summary" : "Get available numbers for inbound messaging",
+      "notes" : "<p>\nReturns available numbers for inbound messaging.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "countryId",
+        "description" : "Country ID",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "countryCode",
+        "description" : "Country code (two-letter)",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "dateFrom",
+        "description" : "Start date",
+        "dataType" : "Date",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "dateTo",
+        "description" : "End date",
+        "dataType" : "Date",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "criteria",
+        "description" : "Criteria",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "free",
+        "description" : "Free, default false",
+        "dataType" : "boolean",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "page",
+        "description" : "Page number, default 1",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "pageSize",
+        "description" : "Page size, default 10",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/ownedNumbers",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_ownedNumbers",
+      "responseClass" : "MoAvailableNumbersWrapper",
+      "summary" : "Get owned numbers for inbound messaging",
+      "notes" : "<p>\nReturns the numbers that the client owns. For example, when we host the client's own GSM cards on our own SIM farms.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "page",
+        "description" : "Page number, default 1",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      }, {
+        "paramType" : "query",
+        "name" : "pageSize",
+        "description" : "Page size, default 10",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/monthlyFee",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_monthlyFee",
+      "responseClass" : "Array[MoFee]",
+      "summary" : "Get the inbound messaging monthly fee",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "countryId",
+        "description" : "Country ID",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/inbound/setupFee",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_inbound_setupFee",
+      "responseClass" : "Array[MoFee]",
+      "summary" : "Get the inbound messaging setup fee",
+      "notes" : "<p>\nReturns the inbound messaging setup fee.",
+      "parameters" : [ {
+        "paramType" : "query",
+        "name" : "countryId",
+        "description" : "Country ID",
+        "dataType" : "int",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/hlr/subscriptions",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_hlr_subscriptions",
+      "responseClass" : "Array[DeliveryReceiptSubscription]",
+      "summary" : "Subscribe to Number Context delivery notifications",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SubscribeToHLRDeliveryNotificationsRequest",
+        "description" : "The subscription request",
+        "dataType" : "SubscribeToHLRDeliveryNotificationsRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/hlr/subscriptions/{subscriptionID}",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsmessaging_hlr_subscriptions__subscriptionID_",
+      "responseClass" : "Array[DeliveryReportSubscription]",
+      "summary" : "Retrieve a Number Context delivery notifications subscription by subscription ID",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "The subscription ID",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    }, {
+      "httpMethod" : "DELETE",
+      "nickname" : "DELETE__1_smsmessaging_hlr_subscriptions__subscriptionID_",
+      "responseClass" : "void",
+      "summary" : "Stop the subscription to Number Context delivery notifications",
+      "notes" : "",
+      "parameters" : [ {
+        "paramType" : "path",
+        "name" : "subscriptionID",
+        "description" : "The subscription ID",
+        "dataType" : "string",
+        "required" : true,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsmessaging/lbs/subscriptions",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsmessaging_lbs_subscriptions",
+      "responseClass" : "Array[DeliveryReceiptSubscription]",
+      "summary" : "Subscribe to LBS delivery notifications",
+      "notes" : "<p>\nSubscribe to LBS (Location Based Services) delivery notifications.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "SubscribeToLBSDeliveryNotificationsRequest",
+        "description" : "The subscription request",
+        "dataType" : "SubscribeToLBSDeliveryNotificationsRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "MoFee" : {
+      "id" : "MoFee",
+      "properties" : {
+        "price" : {
+          "type" : "string",
+          "description" : "Price",
+          "required" : false
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Description",
+          "required" : false
+        }
+      }
+    },
+    "DeliveryReceiptSubscription" : {
+      "id" : "DeliveryReceiptSubscription",
+      "properties" : {
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "The URL uniquely identifying this delivery receipt subscription",
+          "required" : false
+        },
+        "callbackReference" : {
+          "type" : "DeliveryReceiptSubscription$CallbackReference",
+          "description" : "CallbackReference details the URL to send the notification to, and the user supplied callback data",
+          "required" : false
+        }
+      }
+    },
+    "SubscribeToDeliveryNotificationsRequest" : {
+      "id" : "SubscribeToDeliveryNotificationsRequest",
+      "properties" : {
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "Filter criteria. Based on a different senderAddresses you can filter the notifications to a different URLs. Since\nthis is a URL path parameter, it must be URL-escaped",
+          "required" : false
+        },
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "Uniquely identifies this create subscription request. If there is a communication failure during the request,\nusing the same <code>clientCorrelator</code> when retrying the request allows the operator to avoid creating a\nduplicate subscription",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "This will be used by the server to POST the notifications to you, so include the URL of your own listener\napplication",
+          "required" : false
+        },
+        "criteria" : {
+          "type" : "string",
+          "description" : "Filter criteria, i.e. text in the message to help you route the notification to a specific application. For\nexample you may ask users to ‘text GIGPICS to 12345′ for your rock concert photos application. This text is\nmatched against the first word, as defined as the initial characters after discarding any leading Whitespace and\nending with a Whitespace or end of the string. The matching shall be case-insensitive",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "Will be passed back to the <code>notifyURL</code> location, so you can use it to identify the message the\ndelivery receipt relates to (or any other useful data, such as a function name)",
+          "required" : false
+        }
+      }
+    },
+    "UpdateInboundMessagesSubscriptionRequest" : {
+      "id" : "UpdateInboundMessagesSubscriptionRequest",
+      "properties" : {
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL of your application to which notifications will be sent",
+          "required" : false
+        },
+        "dateTo" : {
+          "type" : "Date",
+          "description" : "End date",
+          "required" : false
+        },
+        "subscriptionId" : {
+          "type" : "string",
+          "description" : "Subscription ID",
+          "required" : false
+        },
+        "responseEnabled" : {
+          "type" : "boolean",
+          "description" : "MO autoresponse enabled?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "DeliveryReport" : {
+      "id" : "DeliveryReport",
+      "properties" : {
+        "doneDate" : {
+          "type" : "Date",
+          "description" : "Done date",
+          "required" : false
+        },
+        "price" : {
+          "type" : "string",
+          "description" : "Message price",
+          "required" : false
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Message delivery status",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "sentDate" : {
+          "type" : "Date",
+          "description" : "Sent date",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "A server-generated message identifier, i.e. an unique message ID for the message",
+          "required" : false
+        }
+      }
+    },
+    "SingleSMSRequest" : {
+      "id" : "SingleSMSRequest",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "The text message content.",
+          "required" : false
+        },
+        "binary" : {
+          "type" : "string",
+          "description" : "The binary message content.",
+          "required" : false
+        },
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "The sender's telephone number. Useful to specify to whom a responding SMS may be sent.",
+          "required" : false
+        },
+        "dataCoding" : {
+          "type" : "int",
+          "description" : "Specifies the message data coding. Allowed values are:\n<ul>\n<li><code>0</code> - default (GSM7)</li>\n<li><code>3</code> - Latin 1 (ISO-8859-1)</li>\n<li><code>8</code> - Unicode (UTF-16)</li>\n</ul>",
+          "required" : false
+        },
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "An identifier that uniquely identifies the request.\r\n\r\nIn case of communication failures, using the same <code>clientCorrelator</code> when retrying the request allows\r\nthe operator to avoid re-sending the same message twice.",
+          "required" : false
+        },
+        "senderName" : {
+          "type" : "string",
+          "description" : "The name to appear on the user's terminal as the sender of the message.",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL to which you would like a notification of delivery sent.",
+          "required" : false
+        },
+        "address" : {
+          "type" : "Array",
+          "description" : "Destination addresses for the message. At least one address must be provided. This is a full international number\r\n(i.e. the recipient's MSISDN), including the country code (preceded by '+') and prefixed with the\r\n<code>tel:+</code> protocol identifier, for example <code>tel:+16309700001</code>.",
+          "required" : false,
+          "items" : {
+            "$ref" : "string"
+          }
+        },
+        "validityPeriod" : {
+          "type" : "Date",
+          "description" : "The message validity period, i.e. the date until the message is valid and allowed to be sent.",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "Data that will be passed back to the <code>notifyURL</code> URL location. You can use it to identify the message\r\nthe receipt relates to (or any other useful data, such as a function name).",
+          "required" : false
+        }
+      }
+    },
+    "MoAvailableNumbersWrapper" : {
+      "id" : "MoAvailableNumbersWrapper",
+      "properties" : {
+        "availableNumbers" : {
+          "type" : "Array",
+          "description" : "Available numbers for inbound messaging",
+          "required" : false,
+          "items" : {
+            "$ref" : "MoAvailableNumber"
+          }
+        }
+      }
+    },
+    "ResourceReferenceWrapper" : {
+      "id" : "ResourceReferenceWrapper",
+      "properties" : {
+        "resourceReference" : {
+          "type" : "ResourceReference",
+          "description" : "The resource URL",
+          "required" : false
+        }
+      }
+    },
+    "SubscribeToHLRDeliveryNotificationsRequest" : {
+      "id" : "SubscribeToHLRDeliveryNotificationsRequest",
+      "properties" : {
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "Uniquely identifies this create subscription request. If there is a communication failure during the request,\nusing the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate\nsubscription",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL of your application to which notifications will be sent",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "A function name or other data that you would like included when the POST notification is sent to your application",
+          "required" : false
+        }
+      }
+    },
+    "InboundMessageList" : {
+      "id" : "InboundMessageList",
+      "properties" : {
+        "inboundSMSMessage" : {
+          "type" : "Array",
+          "description" : "The <code>inboundMessageList</code> object contains an <code>inboundMessage</code> array detailing: the\n<code>dateTime</code> that the message was received, <code>destinationAddress</code> is the number associated\nwith your service (for example an agreed short code), <code>messageId</code> is a server-generated message\nidentifier, the message body, <code>resourceURL</code> is a link to the message, <code>senderAddress</code> is\nthe MSISDN of the sender",
+          "required" : false,
+          "items" : {
+            "$ref" : "InboundMessage"
+          }
+        },
+        "inboundMessage" : {
+          "type" : "Array",
+          "description" : "return the inboundMessage array",
+          "required" : false,
+          "items" : {
+            "$ref" : "InboundMessage"
+          }
+        },
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "An URL uniquely identifying this message list",
+          "required" : false
+        },
+        "totalNumberOfPendingMessages" : {
+          "type" : "int",
+          "description" : "The total number of pending messages awaiting retrieval from gateway storage",
+          "required" : false
+        },
+        "numberOfMessagesInThisBatch" : {
+          "type" : "int",
+          "description" : "Number of messages returned in this batch",
+          "required" : false
+        }
+      }
+    },
+    "SubscribeToLBSDeliveryNotificationsRequest" : {
+      "id" : "SubscribeToLBSDeliveryNotificationsRequest",
+      "properties" : {
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "Uniquely identifies this create subscription request. If there is a communication failure during the request,\nusing the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate\nsubscription",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL of your application to which notifications will be sent",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "A function name or other data that you would like included when the POST notification is sent to your application",
+          "required" : false
+        }
+      }
+    },
+    "MoSubscriptionsWrapper" : {
+      "id" : "MoSubscriptionsWrapper",
+      "properties" : {
+        "subscriptions" : {
+          "type" : "Array",
+          "description" : "Inbound messaging subscriptions",
+          "required" : false,
+          "items" : {
+            "$ref" : "MoSubscription"
+          }
+        }
+      }
+    },
+    "DeliveryReceiptSubscription$CallbackReference" : {
+      "id" : "DeliveryReceiptSubscription$CallbackReference",
+      "properties" : {
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "TODO",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "TODO",
+          "required" : false
+        }
+      }
+    },
+    "DeliveryInfo" : {
+      "id" : "DeliveryInfo",
+      "properties" : {
+        "address" : {
+          "type" : "string",
+          "description" : "The address of the recipient (normally, the MSISDN)",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "The message ID",
+          "required" : false
+        },
+        "deliveryStatus" : {
+          "type" : "string",
+          "description" : "Delivery status may be one of the following:\n<ul>\n<li><code>DeliveredToTerminal</code>, indicating successful delivery to the terminal</li>\n<li><code>DeliveryUncertain</code>, delivery status unknown, e.g. because it was handed off to another network.</li>\n<li><code>DeliveryImpossible</code>, unsuccessful delivery - the message could not be delivered before it expired</li>\n<li><code>MessageWaiting</code>, the message is still queued for delivery. This is a temporary state, pending transition to\none of the preceding states</li>\n<li><code>DeliveredToNetwork</code>, successful delivery to the network enabler responsible for routing the MMS</li>\n</ul>",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "SMSMessageList" : {
+      "id" : "SMSMessageList",
+      "properties" : {
+        "messages" : {
+          "type" : "Array",
+          "description" : "List of messages",
+          "required" : false,
+          "items" : {
+            "$ref" : "Message"
+          }
+        }
+      }
+    },
+    "Message" : {
+      "id" : "Message",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "The text message content.",
+          "required" : false
+        },
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "The sender's telephone number. Useful to specify to whom a responding SMS may be sent.",
+          "required" : false
+        },
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "An identifier that uniquely identifies the request.\r\n\r\nIn case of communication failures, using the same <code>clientCorrelator</code> when retrying the request allows\r\nthe operator to avoid re-sending the same message twice.",
+          "required" : false
+        },
+        "senderName" : {
+          "type" : "string",
+          "description" : "The name to appear on the user's terminal as the sender of the message.",
+          "required" : false
+        },
+        "dataCoding" : {
+          "type" : "int",
+          "description" : "Specifies the message data coding. Allowed values are:\r\n<ul>\r\n<li><code>0</code> - default (GSM7)</li>\r\n<li><code>3</code> - Latin 1 (ISO-8859-1)</li>\r\n<li><code>8</code> - Unicode (UTF-16)</li>\r\n</ul>",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL to which you would like a notification of delivery sent.\r\n\r\n<code>callbackData</code> will be passed back in this notification, so you can use it to identify the message the\r\nreceipt relates to (or any other useful data, such as a function name).",
+          "required" : false
+        },
+        "address" : {
+          "type" : "Array",
+          "description" : "Destination addresses for the message. At least one address must be provided. This is a full international number\r\n(i.e. the recipient's MSISDN), including the country code (preceded by '+') and prefixed with the\r\n<code>tel:+</code> protocol identifier, for example <code>tel:+16309700001</code>.",
+          "required" : false,
+          "items" : {
+            "$ref" : "string"
+          }
+        },
+        "useDeliveryReport" : {
+          "type" : "boolean",
+          "description" : "Use delivery reports?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "Data that will be passed back to the <code>notifyURL</code> URL location. You can use it to identify the message\r\nthe receipt relates to (or any other useful data, such as a function name).",
+          "required" : false
+        },
+        "validUntil" : {
+          "type" : "Date",
+          "description" : "Date and time the message is valid until.",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "Created automatically per every message.",
+          "required" : false
+        },
+        "binaryContent" : {
+          "type" : "string",
+          "description" : "The binary message content.",
+          "required" : false
+        }
+      }
+    },
+    "DeliveryInfoList" : {
+      "id" : "DeliveryInfoList",
+      "properties" : {
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "An URL uniquely identifying this request",
+          "required" : false
+        },
+        "deliveryInfo" : {
+          "type" : "Array",
+          "description" : "The deliveryInfoList object contains the delivery information, i.e. an address/deliveryStatus pair for each\naddress that you asked to send the message to, in a deliveryInfo array",
+          "required" : false,
+          "items" : {
+            "$ref" : "DeliveryInfo"
+          }
+        }
+      }
+    },
+    "SendMessageResult" : {
+      "id" : "SendMessageResult",
+      "properties" : {
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "Sender's telephone number",
+          "required" : false
+        },
+        "price" : {
+          "type" : "string",
+          "description" : "Message price",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "Message destination address",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "Message ID",
+          "required" : false
+        },
+        "messageStatus" : {
+          "type" : "string",
+          "description" : "Message status. Indicates whether the message is successfully sent, not sent, delivered, not delivered, waiting\nfor delivery, or any other possible status",
+          "allowableValues" : {
+            "values" : [ "MessageNotSent", "MessageSent", "MessageWaitingForDelivery", "MessageNotDelivered", "MessageDelivered", "NetworkNotAllowed", "NetworkNotAvailable", "InvalidDestinationAddress", "MessageDeliveryUnknown", "RouteNotAvailable", "InvalidSourceAddress", "NotEnoughCredits", "MessageRejected", "MessageExpired", "SystemError", "MessageAccepted" ],
+            "valueType" : "List"
+          }
+        },
+        "errorMessageId" : {
+          "type" : "string",
+          "description" : "Error message ID",
+          "allowableValues" : {
+            "values" : [ "A system error happened", "A service error happened", "Requested change not allowed", "A metadata error happened", "Duplicate key not allowed", "An conflict occured", "Forbidden", "Not found", "Missing parameter", "Invalid parameters", "Invalid parameter", "Invalid JSON HTTP body", "Logout error", "Login error", "Missing required URI", "Different sender address in URI and form parameter", "No directory defined", "No valid file id defined", "File not validated", "Fields don't match", "User already verified", "Billing is already used", "There are no server resources available to process the request", "Duplicate client correlator", "Uploaded file is too large", "Form must have two parts -- one for the file one for params", "Signup error", "Invalid username or password", "User is disabled", "User is locked", "Password expired", "Password does not meet complexity requirements", "Attempt to reuse a password that has already been used", "At least one of the submitted messages contains duplicate recipient", "No valid addresses provided", "Password change error", "User verification error", "Bad verification code", "Media type is not supported", "DELETE method not supported", "PUT method not supported", "OPTIONS method not supported", "POST method not supported", "GET method not supported", "HEAD method not supported", "Error sending message", "Too many addresses specified", "Invalid part", "No server resources available", "Invalid method version", "Inbound messages subscribe error", "Inbound messages subscribe error - subscription exists", "HLR/Roamingstatus error", "LBS error", "Verification code error", "USSD error", "Invalid date and/or time format", "Invalid multipart HTTP body", "File too big", "Requested report type is not supported", "Could not deserialize parameters for the requested report", "Report not ready", "Invalid REST method found for your request", "Requested keyword is reserved.", "This API is temporarily disabled", "Currency is not set for this user" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "InboundMessagesSubscriptionRequest" : {
+      "id" : "InboundMessagesSubscriptionRequest",
+      "properties" : {
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "Uniquely identifies this create subscription request. If there is a communication failure during the request,\nusing the same clientCorrelator when retrying the request allows the operator to avoid creating a duplicate\nsubscription",
+          "required" : false
+        },
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL of your application to which notifications will be sent",
+          "required" : false
+        },
+        "criteria" : {
+          "type" : "string",
+          "description" : "Case-insensitive text to match against the first word of the message, ignoring any leading whitespace. This\nallows you to reuse a short code among various applications, each of which can register their own subscription\nwith different criteria",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "The MSISDN, or code, agreed with the operator, to which people may send an SMS to your application",
+          "required" : false
+        },
+        "dateTo" : {
+          "type" : "Date",
+          "description" : "End date.",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "A function name or other data that you would like included when the POST notification is sent to your application",
+          "required" : false
+        },
+        "dateFrom" : {
+          "type" : "Date",
+          "description" : "Start date.",
+          "required" : false
+        },
+        "responseEnabled" : {
+          "type" : "boolean",
+          "description" : "MO autoresponse enabled?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "DeliveryReportSubscription" : {
+      "id" : "DeliveryReportSubscription",
+      "properties" : {
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "Sender address",
+          "required" : false
+        },
+        "criteria" : {
+          "type" : "string",
+          "description" : "Subscription criteria",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "Callback data",
+          "required" : false
+        },
+        "notifyUrl" : {
+          "type" : "string",
+          "description" : "Notify URL",
+          "required" : false
+        },
+        "subscriptionId" : {
+          "type" : "string",
+          "description" : "Delivery report subscription ID",
+          "required" : false
+        }
+      }
+    },
+    "InboundMessage" : {
+      "id" : "InboundMessage",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "The SMS message content",
+          "required" : false
+        },
+        "senderAddress" : {
+          "type" : "string",
+          "description" : "The sender MSISDN or other identifying number",
+          "required" : false
+        },
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "Contains an URL uniquely identifying this SMS message",
+          "required" : false
+        },
+        "dateTime" : {
+          "type" : "Date",
+          "description" : "The date/time that the SMS message was sent",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "The recipient MSISDN or other identifying number",
+          "required" : false
+        },
+        "messageId" : {
+          "type" : "string",
+          "description" : "A server-generated message identifier; an unique message ID for the message",
+          "required" : false
+        },
+        "dateTimeAsDate" : {
+          "type" : "Date",
+          "description" : "alternate method to get the message date/time in java.util.Date format",
+          "required" : false
+        }
+      }
+    },
+    "MoAvailableNumber" : {
+      "id" : "MoAvailableNumber",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "ID",
+          "required" : false
+        },
+        "monthlyFee" : {
+          "type" : "string",
+          "description" : "Monthly fee",
+          "required" : false
+        },
+        "free" : {
+          "type" : "boolean",
+          "description" : "Is the number free?",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "gSMModemId" : {
+          "type" : "int",
+          "description" : "GSM modem ID",
+          "required" : false
+        },
+        "setupFee" : {
+          "type" : "string",
+          "description" : "Setup fee",
+          "required" : false
+        },
+        "networkId" : {
+          "type" : "int",
+          "description" : "Network ID",
+          "required" : false
+        },
+        "number" : {
+          "type" : "string",
+          "description" : "Number",
+          "required" : false
+        },
+        "type" : {
+          "type" : "string",
+          "description" : "Inbound number type",
+          "allowableValues" : {
+            "values" : [ "Virtual long numbers", "Short codes", "SIM hosting", "Virtual SIM hosting", "Virtual long numbers-Miscellaneous" ],
+            "valueType" : "List"
+          }
+        },
+        "networkName" : {
+          "type" : "string",
+          "description" : "Network name",
+          "required" : false
+        }
+      }
+    },
+    "BulkJob" : {
+      "id" : "BulkJob",
+      "properties" : {
+        "id" : {
+          "type" : "int",
+          "description" : "Bulk job ID",
+          "required" : false
+        },
+        "accountId" : {
+          "type" : "int",
+          "description" : "Account ID",
+          "required" : false
+        },
+        "scheduledTimestamp" : {
+          "type" : "Timestamp",
+          "description" : "Scheduled timestamp",
+          "required" : false
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "Bulk job status",
+          "allowableValues" : {
+            "values" : [ ],
+            "valueType" : "List"
+          }
+        },
+        "queuedCount" : {
+          "type" : "int",
+          "description" : "Queued message count",
+          "required" : false
+        },
+        "sentCount" : {
+          "type" : "int",
+          "description" : "Sent message count",
+          "required" : false
+        },
+        "userId" : {
+          "type" : "int",
+          "description" : "User ID",
+          "required" : false
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Bulk job name",
+          "required" : false
+        },
+        "unprocessedCount" : {
+          "type" : "int",
+          "description" : "Unprocessed message count",
+          "required" : false
+        },
+        "deliveredCount" : {
+          "type" : "int",
+          "description" : "Delivered message count",
+          "required" : false
+        },
+        "timezoneId" : {
+          "type" : "int",
+          "description" : "Timezone ID",
+          "required" : false
+        },
+        "failedCount" : {
+          "type" : "int",
+          "description" : "Failed message count",
+          "required" : false
+        }
+      }
+    },
+    "ResourceReference" : {
+      "id" : "ResourceReference",
+      "properties" : {
+        "resourceURL" : {
+          "type" : "string",
+          "description" : "contains a URL uniquely identifying a successful request to the OneAPI server",
+          "required" : false
+        }
+      }
+    },
+    "SendSMSResult" : {
+      "id" : "SendSMSResult",
+      "properties" : {
+        "clientCorrelator" : {
+          "type" : "string",
+          "description" : "An identifier that uniquely identifies the request.\r\n\r\nIn case of communication failures, using the same <code>clientCorrelator</code> when retrying the request allows\r\nthe operator to avoid re-sending the same message twice.",
+          "required" : false
+        },
+        "sendMessageResults" : {
+          "type" : "Array",
+          "description" : "Array of send message request results, one per every message",
+          "required" : false,
+          "items" : {
+            "$ref" : "SendMessageResult"
+          }
+        },
+        "resourceReference" : {
+          "type" : "ResourceReference",
+          "description" : "The resource URL",
+          "required" : false
+        }
+      }
+    },
+    "MoSubscription" : {
+      "id" : "MoSubscription",
+      "properties" : {
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "URL of your application to which notifications will be sent",
+          "required" : false
+        },
+        "criteria" : {
+          "type" : "string",
+          "description" : "Case insensitive text to match against the first word of the message, ignoring any leading whitespace. This\nallows you to reuse a short code among various applications, each of which can register their own subscription\nwith different criteria",
+          "required" : false
+        },
+        "destinationAddress" : {
+          "type" : "string",
+          "description" : "The MSISDN, or code, agreed with the operator, to which end users may send an SMS to your application",
+          "required" : false
+        },
+        "dateTo" : {
+          "type" : "Timestamp",
+          "description" : "End date",
+          "required" : false
+        },
+        "callbackData" : {
+          "type" : "string",
+          "description" : "A function name or other data that you would like included when the POST notification is sent to your application",
+          "required" : false
+        },
+        "dateFrom" : {
+          "type" : "Timestamp",
+          "description" : "Start date",
+          "required" : false
+        },
+        "subscriptionId" : {
+          "type" : "string",
+          "description" : "Subscription ID",
+          "required" : false
+        },
+        "responseEnabled" : {
+          "type" : "boolean",
+          "description" : "Flag indicating if inbound messaging autoresponse is enabled",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "FreeTrialInboundMessagesSubscriptionRequest" : {
+      "id" : "FreeTrialInboundMessagesSubscriptionRequest",
+      "properties" : {
+        "notifyURL" : {
+          "type" : "string",
+          "description" : "The URL of your application to which notifications will be sent",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

@@ -1,0 +1,117 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://oneapi.infobip.com",
+  "resourcePath" : "SMSOutbound",
+  "apis" : [ {
+    "path" : "/1/smsoutbound/transliteration/encodings",
+    "operations" : [ {
+      "httpMethod" : "GET",
+      "nickname" : "GET__1_smsoutbound_transliteration_encodings",
+      "responseClass" : "Array[String]",
+      "summary" : "Retrieve all available message encodings",
+      "notes" : "<p>\nThese encodings can be used for transliterating (mapping) message text to its GSM7-encoded rappresentation.",
+      "parameters" : [ ]
+    } ]
+  }, {
+    "path" : "/1/smsoutbound/transliteration/map",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsoutbound_transliteration_map",
+      "responseClass" : "MessageResume",
+      "summary" : "Transliterate message text to GSM7 text",
+      "notes" : "<p>\nTransliterate the specified message text to GSM7 text, using the specified character encoding mapping.\n<p>\nTransliterates the characters in the specified message text - only those characters which are not available in the GSM7\ncharset - to their GSM7 equivalents (mappings). The transliteration is done using the specified message\ntext encoding mapping.\n<p>\nThe process is as follows:\n<ol>\n<li>Check if all characters can be mapped to GSM7 using the specified mapping</li>\n<li>If not, leave the original message and raise the Unicode flag</li>\n</ol>\n<p>\nFor example, the Croatian alphabet character <code>č</code> is not present in GSM7, so it \ntransliterates to the character <code>c</code> using the <code>CentralEuropean</code> character encoding mapping.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "TransliterateTextRequest",
+        "description" : "The transliterate text request",
+        "dataType" : "TransliterateTextRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsoutbound/transliteration/encode",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsoutbound_transliteration_encode",
+      "responseClass" : "MessageResume",
+      "summary" : "Encode message text to GSM7 encoding",
+      "notes" : "<p>\nEncodes the specified message text to GSM7 encoding.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "message",
+        "description" : "Message text to encode to GSM7",
+        "dataType" : "string",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  }, {
+    "path" : "/1/smsoutbound/transliteration/map/encode",
+    "operations" : [ {
+      "httpMethod" : "POST",
+      "nickname" : "POST__1_smsoutbound_transliteration_map_encode",
+      "responseClass" : "MessageResume",
+      "summary" : "Transliterate and encode message text to GSM7 encoding",
+      "notes" : "<p>\nTransliterates, and subsequently encodes the specified message text to GSM7 encoding \nin a single operation.",
+      "parameters" : [ {
+        "paramType" : "body",
+        "name" : "TransliterateTextRequest",
+        "description" : "The transliterate/encode message text request",
+        "dataType" : "TransliterateTextRequest",
+        "required" : false,
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "models" : {
+    "TransliterateTextRequest" : {
+      "id" : "TransliterateTextRequest",
+      "properties" : {
+        "text" : {
+          "type" : "string",
+          "description" : "Message text to transliterate",
+          "required" : false
+        },
+        "encoding" : {
+          "type" : "string",
+          "description" : "Message text encoding character mapping",
+          "allowableValues" : {
+            "values" : [ "Default", "None", "Greek", "Cyrillic", "CentralEuropean" ],
+            "valueType" : "List"
+          }
+        }
+      }
+    },
+    "MessageResume" : {
+      "id" : "MessageResume",
+      "properties" : {
+        "messageText" : {
+          "type" : "string",
+          "description" : "The transliterated (mapped) or encoded message text",
+          "required" : false
+        },
+        "messagePartCount" : {
+          "type" : "int",
+          "description" : "Message part count",
+          "required" : false
+        },
+        "unicode" : {
+          "type" : "boolean",
+          "description" : "True if the message text could not be transliterated to a GSM7-encoded rappresentation, so the encoding defaulted\r\nto Unicode",
+          "required" : false,
+          "allowableValues" : {
+            "values" : [ "false", "true" ],
+            "valueType" : "List"
+          }
+        },
+        "charsCount" : {
+          "type" : "int",
+          "description" : "Character count",
+          "required" : false
+        }
+      }
+    }
+  },
+  "swaggerVersion" : "1.1"
+}

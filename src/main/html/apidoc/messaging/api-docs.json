@@ -1,0 +1,39 @@
+{
+  "apiVersion" : "0.1",
+  "basePath" : "http://developer.infobip.com/apidoc/messaging",
+  "apis" : [ {
+    "path" : "/Country",
+    "description" : "Country"
+  }, {
+    "path" : "/CustomerProfile",
+    "description" : "CustomerProfile"
+  }, {
+    "path" : "/Languages",
+    "description" : "Languages"
+  }, {
+    "path" : "/Messaging",
+    "description" : "Messaging"
+  }, {
+    "path" : "/NetworkPrefix",
+    "description" : "NetworkPrefix"
+  }, {
+    "path" : "/Networks",
+    "description" : "Networks"
+  }, {
+    "path" : "/SMSMessaging",
+    "description" : "SMSMessaging"
+  }, {
+    "path" : "/SMSOutbound",
+    "description" : "SMSOutbound"
+  }, {
+    "path" : "/NumberContext",
+    "description" : "NumberContext"
+  }, {
+    "path" : "/TimeZone",
+    "description" : "TimeZone"
+  }, {
+    "path" : "/USSD",
+    "description" : "USSD"
+  } ],
+  "swaggerVersion" : "1.1"
+}
