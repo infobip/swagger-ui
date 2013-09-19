@@ -352,7 +352,7 @@ function program9(depth0,data) {
 function program11(depth0,data) {
   
   
-  return "\n          <div class='sandbox_header'>\n            <div class='autherr' style='display: none'>\n                <p>Authentication error!</p>\n                \n                <a class='authlink' href=''>\n                    Pliz login\n                </a>\n            </div>\n            <input class='submit' name='commit' type='button' value='Try it out!' />\n            <a href='#' class='response_hider' style='display:none'>Hide Response</a>\n            <img alt='Throbber' class='response_throbber' src='images/throbber.gif' style='display:none' />\n          </div>\n          ";
+  return "\n          <div class='sandbox_header'>\n            <div class='autherr heading' style='display: none'>\n                <p>Authentication error!</p>\n                <a class='authlink'>Please Log-In</a>\n            </div>\n            <input class='submit' name='commit' type='button' value='Try it out!' />\n            <a href='#' class='response_hider' style='display:none'>Hide Response</a>\n            <img alt='Throbber' class='response_throbber' src='images/throbber.gif' style='display:none' />\n          </div>\n          ";
   }
 
   buffer += "\n  <ul class='operations' >\n    <li class='";
