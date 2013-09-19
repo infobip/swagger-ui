@@ -1728,7 +1728,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     };
 
     OperationView.prototype.showStatus = function(data) {
-      var code, content, contentType, dom, domarr, headers, pre, response_body;
+      var code, content, contentType, cps, dom, domarr, headers, pre, response_body;
       content = data.content.data;
       headers = data.getHeaders();
       contentType = headers["Content-Type"];
@@ -1774,8 +1774,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
         FM.saveCookie('IbAuthCookie', parseco.apiAuth.getAttr('ibAuthCookie', ''), -1, dom);
         FM.saveCookie('IbAuthCookieInfo', parseco.apiAuth.getAttr(), -1, dom);
         $('.autherr', $(this.el)).show();
-        if ($("[data-fmml-host='CustomerProfile']")[0].fmmlHost) {
-          return $("[data-fmml-host='CustomerProfile']")[0].fmmlHost.run();
+        cps = $("[data-fmml-host='CustomerProfile']");
+        if (FM.isset(cps, '0.fmmlHost')) {
+          return cp[0].fmmlHost.run();
         }
       } else {
         return $('.autherr', $(this.el)).hide();
