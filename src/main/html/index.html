@@ -16,6 +16,9 @@
     <script src='lib/swagger.js' type='text/javascript'></script>
     <script src='swagger-ui.js' type='text/javascript'></script>
     <script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
+    
+    <script src="http://developer.infobip.com/assets/js/parseco.libs.js"></script>
+    <script src="http://developer.infobip.com/assets/js/parseco.js"></script>
     <script type="text/javascript">
         $(function () {
             window.swaggerUi = new SwaggerUi({
@@ -52,7 +55,7 @@
     </script>
 </head>
 
-<body>
+<body onload="parseco.AppParseco.startApp()">
     <div id='header'>
         <div class="swagger-ui-wrap">
             <a id="logo" href="http://swagger.wordnik.com">swagger</a>

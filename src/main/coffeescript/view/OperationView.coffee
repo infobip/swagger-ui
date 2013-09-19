@@ -229,11 +229,28 @@ class OperationView extends Backbone.View
     $(".response_throbber", $(@el)).hide()
     hljs.highlightBlock($('.response_body', $(@el))[0])
 
-    if data._raw.statusCode == 401 then $('.authlink', $(@el)).attr('href','https://accounts.infobip.com/ac/res/frm/login?callback=' + window.location) 
+    if data._raw.statusCode == 401  
+        $('.authlink', $(@el)).attr('href','https://accounts.infobip.com/ac/res/frm/login?callback=' + window.location) 
+        parseco.apiAuth.setAttr('id','')
+        parseco.apiAuth.setAttr('ibAuthCookie','')
+        parseco.apiAuth.setChanged(true,true)
+        if location.hostname == 'localhost' 
+            dom =  '' 
+        else
+            dom = location.hostname
 
-
-    if data._raw.statusCode == 401 then $('.autherr', $(@el)).show() else $('.autherr', $(@el)).hide()
-
+        domarr = dom.split(".")
+        if domarr.length > 2 
+            dom = dom.substr(dom.indexOf('.'))
+            
+        FM.saveCookie('IbAuthCookie', parseco.apiAuth.getAttr('ibAuthCookie',''), -1,dom)
+        FM.saveCookie('IbAuthCookieInfo', parseco.apiAuth.getAttr(), -1,dom)
+        $('.autherr', $(@el)).show() 
+        cps = $( "[data-fmml-host='CustomerProfile']" )
+        if FM.isset(cps,'0.fmmlHost') 
+            cp[0].fmmlHost.run()
+    else
+         $('.autherr', $(@el)).hide()
     
   toggleOperationContent: ->
     elem = $('#' + Docs.escapeResourceName(@model.resourceName) + "_" + @model.nickname + "_" + @model.method + "_" + @model.number + "_content")

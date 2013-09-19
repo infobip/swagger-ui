@@ -1728,7 +1728,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     };
 
     OperationView.prototype.showStatus = function(data) {
-      var code, content, contentType, headers, pre, response_body;
+      var code, content, contentType, dom, domarr, headers, pre, response_body;
       content = data.content.data;
       headers = data.getHeaders();
       contentType = headers["Content-Type"];
@@ -1759,9 +1759,24 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       hljs.highlightBlock($('.response_body', $(this.el))[0]);
       if (data._raw.statusCode === 401) {
         $('.authlink', $(this.el)).attr('href', 'https://accounts.infobip.com/ac/res/frm/login?callback=' + window.location);
-      }
-      if (data._raw.statusCode === 401) {
-        return $('.autherr', $(this.el)).show();
+        parseco.apiAuth.setAttr('id', '');
+        parseco.apiAuth.setAttr('ibAuthCookie', '');
+        parseco.apiAuth.setChanged(true, true);
+        if (location.hostname === 'localhost') {
+          dom = '';
+        } else {
+          dom = location.hostname;
+        }
+        domarr = dom.split(".");
+        if (domarr.length > 2) {
+          dom = dom.substr(dom.indexOf('.'));
+        }
+        FM.saveCookie('IbAuthCookie', parseco.apiAuth.getAttr('ibAuthCookie', ''), -1, dom);
+        FM.saveCookie('IbAuthCookieInfo', parseco.apiAuth.getAttr(), -1, dom);
+        $('.autherr', $(this.el)).show();
+        if ($("[data-fmml-host='CustomerProfile']")[0].fmmlHost) {
+          return $("[data-fmml-host='CustomerProfile']")[0].fmmlHost.run();
+        }
       } else {
         return $('.autherr', $(this.el)).hide();
       }
